@@ -1,1 +1,310 @@
-hello word!
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>个人简介 | X-home</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --card: rgba(255, 255, 255, 0.88);
+      --text: #1f2937;
+      --muted: #64748b;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #14b8a6;
+      --border: rgba(148, 163, 184, 0.28);
+      --shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 18%, rgba(37, 99, 235, 0.18), transparent 26rem),
+        radial-gradient(circle at 86% 12%, rgba(20, 184, 166, 0.2), transparent 24rem),
+        linear-gradient(135deg, #eef2ff 0%, var(--bg) 42%, #ecfeff 100%);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 56px 0;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .intro {
+      padding: clamp(32px, 5vw, 58px);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary-dark);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .badge::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(20, 184, 166, 0.14);
+    }
+
+    h1 {
+      margin: 28px 0 16px;
+      font-size: clamp(42px, 8vw, 76px);
+      line-height: 1.04;
+      letter-spacing: -0.06em;
+    }
+
+    .highlight {
+      color: var(--primary);
+    }
+
+    .lead {
+      max-width: 680px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 21px);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button.primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      box-shadow: 0 16px 30px rgba(37, 99, 235, 0.24);
+    }
+
+    .button.secondary {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--primary-dark);
+    }
+
+    .profile-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100%;
+      padding: 28px;
+    }
+
+    .avatar {
+      width: 132px;
+      height: 132px;
+      margin-bottom: 24px;
+      border-radius: 36px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 50px;
+      font-weight: 900;
+      letter-spacing: -0.08em;
+      background: linear-gradient(135deg, #1d4ed8, #14b8a6);
+      box-shadow: 0 20px 40px rgba(20, 184, 166, 0.22);
+    }
+
+    .profile-card h2 {
+      margin: 0 0 10px;
+      font-size: 28px;
+    }
+
+    .profile-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .meta {
+      display: grid;
+      gap: 12px;
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .meta span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .section {
+      padding: 28px;
+    }
+
+    .section h3 {
+      margin: 0 0 14px;
+      font-size: 22px;
+    }
+
+    .section p,
+    .section li {
+      color: var(--muted);
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.08);
+      color: var(--primary-dark);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    footer {
+      margin-top: 34px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .hero,
+      .section-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page {
+        padding: 28px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" aria-labelledby="profile-title">
+      <div class="card intro">
+        <span class="badge">欢迎来到我的个人主页</span>
+        <h1 id="profile-title">你好，我是 <span class="highlight">X-home</span></h1>
+        <p class="lead">
+          这里是我的个人简介页面。我关注前端开发、静态网站构建与持续学习，喜欢把想法整理成清晰、可访问、易维护的网页体验。
+        </p>
+        <div class="actions" aria-label="快捷链接">
+          <a class="button primary" href="mailto:hello@example.com">联系我</a>
+          <a class="button secondary" href="https://github.com/" target="_blank" rel="noreferrer">查看 GitHub</a>
+        </div>
+      </div>
+
+      <aside class="card profile-card" aria-label="个人信息卡片">
+        <div>
+          <div class="avatar" aria-hidden="true">X</div>
+          <h2>X-home</h2>
+          <p>静态博客作者 / Web 爱好者</p>
+        </div>
+        <div class="meta">
+          <div><span>位置</span><br />中国</div>
+          <div><span>方向</span><br />个人网站、前端开发、内容创作</div>
+          <div><span>状态</span><br />持续学习中</div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section-grid" aria-label="简介详情">
+      <article class="card section">
+        <h3>关于我</h3>
+        <p>
+          我喜欢用简洁的页面记录项目、学习笔记和生活灵感，也在不断探索更高效的网站开发方式。
+        </p>
+      </article>
+
+      <article class="card section">
+        <h3>技能方向</h3>
+        <div class="tags" aria-label="技能标签">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">静态网站</span>
+        </div>
+      </article>
+
+      <article class="card section">
+        <h3>近期计划</h3>
+        <ul>
+          <li>完善个人博客内容</li>
+          <li>整理项目展示页面</li>
+          <li>持续优化访问体验</li>
+        </ul>
+      </article>
+    </section>
+
+    <footer>
+      © 2026 X-home. Built with a static HTML page.
+    </footer>
+  </main>
+</body>
+</html>
